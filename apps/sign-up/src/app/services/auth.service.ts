@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -17,14 +17,15 @@ export interface SignUpResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = 'https://admin-api.falc.local/api';
 
   signUp(request: SignUpRequest): Observable<SignUpResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<SignUpResponse>('/api/users', {
+    return this.http.post<SignUpResponse>(`${this.baseUrl}/users`, {
       email: request.email,
       password: request.password,
       confirmPassword: request.password
