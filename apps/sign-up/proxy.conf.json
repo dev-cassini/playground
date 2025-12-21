@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://sts.falc.local",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

@@ -1,30 +1,29 @@
 {
-  "name": "sign-up",
+  "name": "portal",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/sign-up/src",
+  "sourceRoot": "apps/portal/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "outputPath": "dist/apps/sign-up",
-        "browser": "apps/sign-up/src/main.ts",
-        "tsConfig": "apps/sign-up/tsconfig.app.json",
+        "outputPath": "dist/portal",
+        "browser": "apps/portal/src/main.ts",
+        "tsConfig": "apps/portal/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/sign-up/public"
+            "input": "apps/portal/public"
           }
         ],
-        "styles": ["apps/sign-up/src/styles.css"],
-        "server": "apps/sign-up/src/main.server.ts",
-        "ssr": {
-          "entry": "apps/sign-up/src/server.ts"
-        },
-        "outputMode": "server"
+        "styles": [
+          "apps/portal/src/styles.css"
+        ]
       },
       "configurations": {
         "production": {
@@ -53,15 +52,12 @@
     "serve": {
       "continuous": true,
       "executor": "@angular/build:dev-server",
-      "options": {
-        "proxyConfig": "apps/sign-up/proxy.conf.json"
-      },
       "configurations": {
         "production": {
-          "buildTarget": "sign-up:build:production"
+          "buildTarget": "portal:build:production"
         },
         "development": {
-          "buildTarget": "sign-up:build:development"
+          "buildTarget": "portal:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -71,19 +67,21 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/sign-up/jest.config.cts",
-        "tsConfig": "apps/sign-up/tsconfig.spec.json"
+        "jestConfig": "apps/portal/jest.config.cts",
+        "tsConfig": "apps/portal/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "sign-up:build",
+        "buildTarget": "portal:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/sign-up/browser",
+        "staticFilePath": "dist/portal/browser",
         "spa": true
       }
     }
