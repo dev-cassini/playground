@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface SignUpRequest {
-  email: string;
+  emailAddress: string;
   password: string;
 }
 
@@ -25,10 +25,9 @@ export class AuthService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post<SignUpResponse>(`${this.baseUrl}/users`, {
-      email: request.email,
-      password: request.password,
-      confirmPassword: request.password
+    return this.http.post<SignUpResponse>(`${this.baseUrl}/sign-up/users`, {
+      emailAddress: request.emailAddress,
+      password: request.password
     }, { headers });
   }
 }

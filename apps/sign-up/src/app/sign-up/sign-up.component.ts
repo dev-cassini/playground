@@ -23,7 +23,7 @@ export class SignUpComponent {
         private router: Router
     ) {
         this.signUpForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email]],
+            emailAddress: ['', [Validators.required, Validators.email]],
             password: ['', [
                 Validators.required,
                 Validators.minLength(8),
@@ -32,8 +32,8 @@ export class SignUpComponent {
         });
     }
 
-    get email() {
-        return this.signUpForm.get('email');
+    get emailAddress() {
+        return this.signUpForm.get('emailAddress');
     }
 
     get password() {
@@ -54,9 +54,9 @@ export class SignUpComponent {
         this.errorMessage = '';
         this.successMessage = '';
 
-        const { email, password } = this.signUpForm.value;
+        const { emailAddress, password } = this.signUpForm.value;
 
-        this.authService.signUp({ email, password }).subscribe({
+        this.authService.signUp({ emailAddress, password }).subscribe({
             next: (response) => {
                 this.isSubmitting = false;
                 if (response.success) {

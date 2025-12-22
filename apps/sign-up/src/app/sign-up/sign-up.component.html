@@ -44,15 +44,15 @@
           <input
             id="email"
             type="email"
-            formControlName="email"
+            formControlName="emailAddress"
             class="form-input"
             placeholder="you@example.com"
-            [class.input-error]="email?.invalid && email?.touched"
+            [class.input-error]="emailAddress?.invalid && emailAddress?.touched"
           />
         </div>
-        <div class="error-message" *ngIf="email?.invalid && email?.touched">
-          <span *ngIf="email?.errors?.['required']">Email is required</span>
-          <span *ngIf="email?.errors?.['email']">Please enter a valid email address</span>
+        <div class="error-message" *ngIf="emailAddress?.invalid && emailAddress?.touched">
+          <span *ngIf="emailAddress?.errors?.['required']">Email is required</span>
+          <span *ngIf="emailAddress?.errors?.['email']">Please enter a valid email address</span>
         </div>
       </div>
 
@@ -88,7 +88,7 @@
             </svg>
           </button>
         </div>
-        
+
         <!-- Password Strength Indicator -->
         <div class="password-strength" *ngIf="password?.value">
           <div class="strength-bars">
@@ -128,7 +128,7 @@
 
     <div class="card-footer">
       <p class="footer-text">
-        Already have an account? 
+        Already have an account?
         <a href="#" class="footer-link">Sign in</a>
       </p>
     </div>
