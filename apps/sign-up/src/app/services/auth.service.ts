@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface SignUpRequest {
   emailAddress: string;
@@ -18,7 +19,7 @@ export interface SignUpResponse {
 })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'https://admin-api.falc.local/api';
+  private readonly baseUrl = environment.authAdminApiUrl;
 
   signUp(request: SignUpRequest): Observable<SignUpResponse> {
     const headers = new HttpHeaders({

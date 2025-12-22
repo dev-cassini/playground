@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-sign-up',
@@ -19,8 +19,7 @@ export class SignUpComponent {
 
     constructor(
         private fb: FormBuilder,
-        private authService: AuthService,
-        private router: Router
+        private authService: AuthService
     ) {
         this.signUpForm = this.fb.group({
             emailAddress: ['', [Validators.required, Validators.email]],
@@ -57,19 +56,13 @@ export class SignUpComponent {
         const { emailAddress, password } = this.signUpForm.value;
 
         this.authService.signUp({ emailAddress, password }).subscribe({
-            next: (response) => {
+            next: () => {
                 this.isSubmitting = false;
-                if (response.success) {
-                    this.successMessage = 'Account created successfully! Redirecting...';
-                    this.signUpForm.reset();
-                    // Redirect after 2 seconds
-                    setTimeout(() => {
-                        // You can redirect to a success page or login page
-                        // this.router.navigate(['/success']);
-                    }, 2000);
-                } else {
-                    this.errorMessage = response.message || 'Failed to create account. Please try again.';
-                }
+                this.successMessage = 'Account created successfully! Redirecting...';
+                this.signUpForm.reset();
+                setTimeout(() => {
+                    window.location.href = environment.portalUrl;
+                }, 2000);
             },
             error: (error) => {
                 this.isSubmitting = false;
