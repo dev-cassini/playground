@@ -184,7 +184,7 @@ npx nx run-many --target=test --all
 
 4. Open your browser and navigate to:
    - Sign-up app: http://localhost:4200
-   - Portal app: http://localhost:4200 (when running portal)
+   - Portal app: http://localhost:4201 (when running portal)
 
 ## Notes
 
