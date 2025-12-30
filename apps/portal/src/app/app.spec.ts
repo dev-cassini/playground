@@ -8,12 +8,15 @@ describe('App', () => {
     }).compileComponents();
   });
 
-  it('should render title', async () => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(App);
-    await fixture.whenStable();
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it('should have router outlet', () => {
+    const fixture = TestBed.createComponent(App);
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome to the Portal',
-    );
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
