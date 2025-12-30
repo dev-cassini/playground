@@ -1,0 +1,142 @@
+.landing-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.landing-header {
+  padding: 2rem;
+  text-align: center;
+}
+
+.landing-header h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.landing-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.welcome-card {
+  background: white;
+  border-radius: 16px;
+  padding: 3rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  color: #10b981;
+}
+
+.success-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-card h2 {
+  color: #1f2937;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+
+.welcome-message {
+  color: #6b7280;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.features-section {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.features-section h3 {
+  color: #374151;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  color: #4b5563;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.feature-icon {
+  font-size: 1.25rem;
+}
+
+.cta-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+.landing-footer {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.landing-footer p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.landing-footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.landing-footer a:hover {
+  text-decoration: none;
+}
