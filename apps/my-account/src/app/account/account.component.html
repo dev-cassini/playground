@@ -1,0 +1,40 @@
+<div class="account-container">
+  <header class="account-header">
+    <h1>My Account</h1>
+    <button (click)="logout()" class="logout-button">Logout</button>
+  </header>
+
+  <main class="account-content">
+    <section class="token-section">
+      <h2>Identity Token Claims</h2>
+      @if (identityClaims) {
+        <div class="claims-table">
+          @for (key of getClaimKeys(identityClaims); track key) {
+            <div class="claim-row">
+              <span class="claim-key">{{ key }}</span>
+              <span class="claim-value">{{ formatValue(identityClaims[key]) }}</span>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-data">No identity claims available</p>
+      }
+    </section>
+
+    <section class="token-section">
+      <h2>Access Token Claims</h2>
+      @if (accessTokenClaims) {
+        <div class="claims-table">
+          @for (key of getClaimKeys(accessTokenClaims); track key) {
+            <div class="claim-row">
+              <span class="claim-key">{{ key }}</span>
+              <span class="claim-value">{{ formatValue(accessTokenClaims[key]) }}</span>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-data">No access token claims available</p>
+      }
+    </section>
+  </main>
+</div>
