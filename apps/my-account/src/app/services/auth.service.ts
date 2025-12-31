@@ -40,22 +40,20 @@ export class AuthService {
 
   async initializeAuth(): Promise<boolean> {
     try {
-      // Check if we're processing a callback (has code in URL)
-      const isCallback = window.location.search.includes('code=') ||
-                         window.location.search.includes('iss=');
+      const isCallback = window.location.pathname.includes('/callback');
 
       await this.oauthService.loadDiscoveryDocumentAndTryLogin();
 
-      // Only attempt silent refresh if we already have a token and NOT processing a callback
       if (this.oauthService.hasValidAccessToken() && !isCallback) {
-        try {
-          await this.oauthService.silentRefresh();
-        } catch {
-          // Silent refresh failed - session may have ended
-          // Clear local tokens and return false
-          this.oauthService.logOut(true);
+        // Quick session validation - wait up to 1 second for response
+        const isSessionValid = await this.quickSessionCheck();
+        if (!isSessionValid) {
+          this.oauthService.logOut();
           return false;
         }
+
+        // Set up automatic silent refresh for token expiry
+        this.oauthService.setupAutomaticSilentRefresh();
       }
 
       return this.oauthService.hasValidAccessToken();
@@ -63,6 +61,21 @@ export class AuthService {
       console.error('OAuth initialization failed:', error);
       return false;
     }
+  }
+
+  private async quickSessionCheck(): Promise<boolean> {
+    // Race between silent refresh and a short timeout
+    // If session is invalid, IdP responds quickly with error
+    // If valid or slow, assume valid and proceed
+    const timeoutPromise = new Promise<boolean>(resolve =>
+      setTimeout(() => resolve(true), 1000)
+    );
+
+    const refreshPromise = this.oauthService.silentRefresh()
+      .then(() => true)
+      .catch(() => false);
+
+    return Promise.race([refreshPromise, timeoutPromise]);
   }
 
   login(): void {
