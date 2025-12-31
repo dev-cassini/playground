@@ -13,10 +13,20 @@ export class AccountComponent implements OnInit {
 
   identityClaims: Record<string, unknown> | null = null;
   accessTokenClaims: Record<string, unknown> | null = null;
+  clientId: string | null = null;
 
   ngOnInit(): void {
     this.identityClaims = this.authService.getIdentityClaims();
     this.accessTokenClaims = this.authService.getAccessTokenClaims();
+    this.clientId = this.extractClientId();
+  }
+
+  private extractClientId(): string | null {
+    if (!this.accessTokenClaims) return null;
+    // Check common claim names for client ID
+    return (this.accessTokenClaims['client_id'] as string)
+      || (this.accessTokenClaims['azp'] as string)
+      || null;
   }
 
   logout(): void {

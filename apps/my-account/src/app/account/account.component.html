@@ -5,6 +5,13 @@
   </header>
 
   <main class="account-content">
+    @if (clientId) {
+      <section class="client-id-section">
+        <span class="client-id-label">Client ID</span>
+        <span class="client-id-value">{{ clientId }}</span>
+      </section>
+    }
+
     <section class="token-section">
       <h2>Identity Token Claims</h2>
       @if (identityClaims) {
